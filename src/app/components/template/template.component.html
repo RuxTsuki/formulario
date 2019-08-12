@@ -1,0 +1,111 @@
+<h4>Practicando cosas de Formularios</h4>
+<hr>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" action="" class=""
+    [ngClass]="{'was-validated': mostrarCamposNecesarios}">
+    <div class="">
+        <div class="form-group row" [ngClass]="{'was-validated': !nombre.pristine}">
+            <label class="col-2 col-form-label" for="">Nombre</label>
+            <div class="col-8 ">
+                <input #nombre="ngModel" name="nombre" minlength="3" [(ngModel)]="usuario.nombre" required
+                    placeholder="Nombre" type="text" class=" form-control">
+
+                <div *ngIf="nombre.errors?.required" class="invalid-feedback">
+                    Ingresa tu nombre
+                </div>
+                <div *ngIf="nombre.errors?.minlength" class="invalid-feedback">
+                    El campo nombre requiere {{nombre.errors.minlength.requiredLength}} caracteres minimo
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group row " [ngClass]="{'was-validated': !apellido.pristine}">
+            <label class="col-2 col-form-label" for="">Apellido</label>
+            <div class="col-8">
+                <input #apellido="ngModel" name="apellido" minlength="2" required [(ngModel)]="usuario.apellido"
+                    placeholder="Apellido" type="text" class="form-control">
+                <div *ngIf="apellido.errors?.required" class="invalid-feedback">
+                    Ingresa tu apellido
+                </div>
+                <div *ngIf="apellido.errors?.minlength" class="invalid-feedback">
+                    El campo apellido requiere {{apellido.errors.minlength.requiredLength}} caracteres minimo
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-2 col-form-label" for="">Pais</label>
+            <div class="col-8">
+                <select [(ngModel)]="usuario.pais" required class="form-control" name="pais" id="">
+                    <option class="" value="">Seleccione</option>
+                    <option *ngFor="let pais of paises" [value]="pais.codigo">{{pais.nombre}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-2 col-form-label" for="">Sexo</label>
+            <div class="col-8">
+                <div class="form-check">
+                    <input required [(ngModel)]="usuario.sexo" value="hombre" class="form-check-input" type="radio" name="sexo">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Hombre
+                    </label>
+                    <input required  [(ngModel)]="usuario.sexo" value="mujer" class="form-check-input" type="radio" name="sexo">
+                    <label class="form-check-label" for="exampleRadios2">
+                        mujer
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group row" [ngClass]="{'was-validated': !email.pristine}">
+            <label class="col-2 col-form-label" for="">Email</label>
+            <div class="col-8">
+                <input #email="ngModel" name="email" minlength="4" required
+                    pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="usuario.email" placeholder="Email"
+                    type="email" class="form-control">
+                <div *ngIf="email.errors?.required" class="invalid-feedback">
+                    Ingresa una direccion de email
+                </div>
+                <div *ngIf="email.errors?.minlength" class="invalid-feedback">
+                    El campo email requiere {{email.errors.minlength.requiredLength}} caracteres minimo
+                </div>
+                <div *ngIf="email.errors?.pattern" class="invalid-feedback">
+                    El campo email no tiene el formato de correo ej: <small>example@gmail.com</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <label class="col-2 col-form-label" for="">Terminos</label>
+            <div class="col-8">
+                <div class="form-check form-check-inline">
+                    <input [(ngModel)]="usuario.acepta"
+                    required
+                    name="acepta"
+                     class="form-check-input" type="checkbox" id="inlineCheckbox1">
+                    <label class="form-check-label" for="inlineCheckbox1">Acepto los terminos y condiciones</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label for="" class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button (click)="validar(form)" type="submit" class="btn btn-outline-primary">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+</form>
+
+<pre>
+    {{usuario | json}}
+</pre>
