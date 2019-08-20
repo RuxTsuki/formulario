@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -12,10 +12,10 @@ export class DataComponent implements OnInit {
 
   usuario: object = {
     nombrecompleto: {
-      nombre: "d",
-      apellido: "g"
+      nombre: 'd',
+      apellido: 'd'
     },
-    correo: "Diegosfera@gmail.com",
+    correo: 'g',
     pasatiempos: ['correr', 'eeeeee']
   };
   forma: FormGroup;
@@ -28,14 +28,14 @@ export class DataComponent implements OnInit {
         nombre: new FormControl(this.usuario[`nombrecompleto`].nombre, [Validators.required, Validators.minLength(5)]),
         apellido: new FormControl('', [Validators.required, this.noHerrera])
       }),
-      correo: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+      correo: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]),
       pasatiempos: new FormArray([
         new FormControl('correr', Validators.required),
-        new FormControl('eeeeeee', )
+        new FormControl('eeeeeee')
       ]),
       password1: new FormControl('', [Validators.required]),
       password2: new FormControl(),
-      username: new FormControl('', [Validators.required ],this.existeUsuario)
+      username: new FormControl('', [Validators.required], this.existeUsuario)
     });
     // carga todo de forma automatica si es exactamente la misma estrucutra
     // this.forma.setValue(this.usuario);
@@ -45,13 +45,13 @@ export class DataComponent implements OnInit {
       this.noIgual.bind(this.forma)
     ]);
 
-    // devuelven un observable 
+    // devuelven un observable
     // me suscribo e imprimo, cadavez que cambia algo muestro data
-    this.forma.controls[`username`].valueChanges.subscribe( data => {
+    this.forma.controls[`username`].valueChanges.subscribe(data => {
       console.log(data);
     });
 
-    this.forma.controls[`username`].statusChanges.subscribe( data => {
+    this.forma.controls[`username`].statusChanges.subscribe(data => {
       console.log(data);
     });
 
@@ -63,27 +63,27 @@ export class DataComponent implements OnInit {
 
   noHerrera(control: FormControl): { [s: string]: boolean } {
     if (control.value === 'herrera') {
-      return { noherrera: true }
+      return { noherrera: true };
     }
     return null;
   }
 
   noIgual(control: FormControl): { [s: string]: boolean } {
-    let forma: any = this;
+    const forma: any = this;
     if (control.value !== forma.controls[`password1`].value) {
-      return { noIgual: true }
+      return { noIgual: true };
     }
     return null;
   }
 
-  existeUsuario(control: FormControl): Promise<any> | Observable<any> {
+  existeUsuario(control: FormControl): any {
     const promesa = new Promise(
       (resolve, reject) => {
         setTimeout(() => {
-          if (control.value === "strider") {
+          if (control.value === 'strider') {
             resolve({ existe: true });
           } else {
-            resolve(null)
+            resolve(null);
           }
         }, 3000);
       }
@@ -93,9 +93,9 @@ export class DataComponent implements OnInit {
 
 
   guardarCambios() {
-    console.log(this.forma.value)
-    console.log(this.forma)
-    console.log(this.forma.controls.nombrecompleto['controls'].nombre.valid);
+    console.log(this.forma.value);
+    console.log(this.forma);
+    console.log(this.forma.controls.nombrecompleto[`controls`].nombre.valid);
     this.forma.reset({
       nombrecompleto: {
         nombre: '',

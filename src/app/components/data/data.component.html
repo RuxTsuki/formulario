@@ -4,14 +4,18 @@
 
     <div formGroupName="nombrecompleto">
 
-        <div class="form-group row" [ngClass]="{'has-danger': forma.controls.nombrecompleto.controls.nombre.valid}">
+        <div class="form-group row" [ngClass]="{'was-validated': !forma.pristine}">
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
 
-                <input formControlName="nombre" class="form-control" type="text" placeholder="Nombre">
-                <div *ngIf="forma.get('nombrecompleto.nombre').errors?.required" class="form-control-feedback">
+                <input formControlName="nombre" class="form-control" type="text" placeholder="Nombre" required minlength="2">
+                <div *ngIf="!forma.controls.nombrecompleto.controls.nombre.value" class="invalid-feedback">
                     Campo Nombre necesario
                 </div>
+                <div *ngIf="forma.controls.nombrecompleto['controls'].nombre.errors?.minlength" class="invalid-feedback">
+                        MInlend
+                    </div>
+
             </div>
         </div>
 
