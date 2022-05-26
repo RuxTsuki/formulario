@@ -12,7 +12,7 @@ import { Form, NgForm } from '@angular/forms';
 })
 export class TemplateComponent implements OnInit {
   mostrarCamposNecesarios = false;
-  usuario: object = {
+  usuario: any = {
     nombre: '',
     apellido: null,
     email: null,
@@ -48,8 +48,6 @@ export class TemplateComponent implements OnInit {
   onSubmit(form: NgForm) {
     console.log('jiji enviando');
     console.log(form);
-    console.log('value:', form.value);
-    console.log(this.usuario);
   }
 
 

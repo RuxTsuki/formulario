@@ -1,88 +1,84 @@
-<h4>Formularios <small>data</small></h4>
+<h4>Formularios manera de forma Reactiva</h4>
 <hr>
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
 
-    <div formGroupName="nombrecompleto">
+  <div formGroupName="nombrecompleto">
 
-        <div class="form-group row" [ngClass]="{'was-validated': !forma.pristine}">
-            <label class="col-2 col-form-label">Nombre</label>
-            <div class="col-8">
+    <div class="form-group row" [ngClass]="{'was-validated': !forma.pristine}">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
 
-                <input formControlName="nombre" class="form-control" type="text" placeholder="Nombre" required minlength="2">
-                <div *ngIf="!forma.controls.nombrecompleto.controls.nombre.value" class="invalid-feedback">
-                    Campo Nombre necesario
-                </div>
-                <div *ngIf="forma.controls.nombrecompleto['controls'].nombre.errors?.minlength" class="invalid-feedback">
-                        MInlend
-                    </div>
-
-            </div>
+        <input formControlName="nombre" class="form-control" type="text" placeholder="Nombre" required minlength="2">
+        <div *ngIf="!forma.controls.nombrecompleto['controls'].nombre.value" class="invalid-feedback">
+          Campo Nombre necesario
+        </div>
+        <div *ngIf="forma.controls.nombrecompleto['controls'].nombre.errors?.minlength" class="invalid-feedback">
+          MInlend
         </div>
 
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Apellido</label>
-            <div class="col-8">
-
-                <input formControlName="apellido" class="form-control" type="text" placeholder="Apellido">
-            </div>
-        </div>
-
-    </div>
-    <div class="form-group row">
-        <label class="col-2 col-form-label">Usuario</label>
-        <div class="col-md-8">
-
-            <input formControlName="username" class="form-control" type="text" placeholder="usuername electrónico">
-        </div>
+      </div>
     </div>
 
     <div class="form-group row">
-        <label class="col-2 col-form-label">Correo</label>
-        <div class="col-md-8">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col-8">
 
-            <input formControlName="correo" class="form-control" type="email" placeholder="Correo electrónico">
-        </div>
+        <input formControlName="apellido" class="form-control" type="text" placeholder="Apellido">
+      </div>
     </div>
 
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Usuario</label>
+    <div class="col-md-8">
 
-    <div class="form-group row">
-        <label class="col-2 col-form-label">Password</label>
-        <div class="col-md-8">
-
-            <input formControlName="password1" class="form-control" type="password">
-        </div>
+      <input formControlName="username" class="form-control" type="text" placeholder="usuername electrónico">
     </div>
-    <div class="form-group row">
-        <label class="col-2 col-form-label">Password 2</label>
-        <div class="col-md-8">
+  </div>
 
-            <input formControlName="password2" class="form-control" type="password">
-        </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-md-8">
+
+      <input formControlName="correo" class="form-control" type="email" placeholder="Correo electrónico">
     </div>
+  </div>
 
 
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Password</label>
+    <div class="col-md-8">
 
-
-    <div class="" formArrayName="pasatiempos">
-        <label for="">correr</label>
-        <input formControlName="0" class="form-control" type="text">
-        <label for="">eeeeee</label>
-        <input formControlName="1" class="form-control" type="text">
+      <input formControlName="password1" class="form-control" type="password">
     </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Password 2</label>
+    <div class="col-md-8">
 
-    <div class="form-group row">
-        <label class="col-2 col-form-label">&nbsp;</label>
-        <div class="input-group col-md-8">
-            <button type="submit" class="btn btn-outline-primary">
-                Guardar
-            </button>
-        </div>
+      <input formControlName="password2" class="form-control" type="password">
     </div>
+  </div>
 
 
-    {{
-      forma.valid
-  }}
+
+
+  <div class="" formArrayName="pasatiempos">
+    <label for="">correr</label>
+    <input formControlName="0" class="form-control" type="text">
+    <label for="">eeeeee</label>
+    <input formControlName="1" class="form-control" type="text">
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
+        Guardar
+      </button>
+    </div>
+  </div>
+
   <br>
   {{forma.status}}
 </form>

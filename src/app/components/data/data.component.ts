@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 })
 export class DataComponent implements OnInit {
 
-  usuario: object = {
+  usuario: any = {
     nombrecompleto: {
       nombre: 'd',
       apellido: 'd'
@@ -48,11 +48,11 @@ export class DataComponent implements OnInit {
     // devuelven un observable
     // me suscribo e imprimo, cadavez que cambia algo muestro data
     this.forma.controls[`username`].valueChanges.subscribe(data => {
-      console.log(data);
+      //console.log(data);
     });
 
     this.forma.controls[`username`].statusChanges.subscribe(data => {
-      console.log(data);
+      //console.log(data);
     });
 
 
@@ -93,9 +93,10 @@ export class DataComponent implements OnInit {
 
 
   guardarCambios() {
-    console.log(this.forma.value);
-    console.log(this.forma);
-    console.log(this.forma.controls.nombrecompleto[`controls`].nombre.valid);
+    alert("Valores en consola open Devtools")
+
+    console.log("form reactivo ",this.forma.value)
+
     this.forma.reset({
       nombrecompleto: {
         nombre: '',
